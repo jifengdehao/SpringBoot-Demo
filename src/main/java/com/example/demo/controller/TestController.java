@@ -1,11 +1,8 @@
-package com.example.demo;
+package com.example.demo.controller;
 
-import javafx.scene.chart.ValueAxis;
+import com.example.demo.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/two")
