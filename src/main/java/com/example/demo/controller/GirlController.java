@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class GirlController {
 
-    private final static Logger logger= LoggerFactory.getLogger(GirlController.class);
+    private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
 
     @Autowired
     private GirlRepository girlRepository;
@@ -44,9 +44,9 @@ public class GirlController {
 
     @PostMapping(value = "/girls")
     public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            return null;
-           // return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            //return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
@@ -87,6 +87,7 @@ public class GirlController {
 
     /**
      * 根据id 删除女生信息
+     *
      * @param id
      */
 
@@ -96,13 +97,14 @@ public class GirlController {
     }
 
     /**
-     *  通过年龄来查询女生列表
+     * 通过年龄来查询女生列表
+     *
      * @param age
      * @return
      */
 
     @GetMapping(value = "/girls/age/{age}")
-    public List<Girl> girlFindAge(@PathVariable("age") Integer age){
+    public List<Girl> girlFindAge(@PathVariable("age") Integer age) {
         return girlRepository.findByAge(age);
     }
 
@@ -110,12 +112,12 @@ public class GirlController {
      * 通过服务插入两条数据
      */
     @PostMapping(value = "/girls/two")
-    public void girlTwo(){
+    public void girlTwo() {
         girlService.insertTwo();
     }
 
     @GetMapping(value = "/girls/getAge/{id}")
-    public void getAge(@PathVariable("id") Integer id) throws Exception{
+    public void getAge(@PathVariable("id") Integer id) throws Exception {
         girlService.getAge(id);
     }
 }
